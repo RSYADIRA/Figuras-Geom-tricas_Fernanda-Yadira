@@ -1,0 +1,254 @@
+Figura Ate;
+Figura Mariana;
+Figura Dani;
+Figura Yadi;
+Figura Fer;
+Figura Kaled;
+Figura Ian;
+Figura Irais;
+ArrayList<Figura> Figuras;
+
+//Triangulo, Cuadrado, Rectangulo, Circulo, Pentagono, Hexagono, Heptagono, Octagono
+
+void setup(){
+  size(600,600);
+  Ate = new Triangulo(50,86.6,100,100,100);
+  Mariana = new Cuadrado (100);
+  Dani = new Rectangulo (130,80);
+  Yadi = new Circulo (PI, 100);
+  Fer = new Pentagono (50,20);
+  Kaled = new Hexagono (60,20);
+  Ian = new Heptagono (50,20);
+  Irais = new Octagono (50,20);
+    
+  Figuras = new ArrayList<Figura> ();
+  Figuras.add(Ate);
+  Figuras.add(Mariana);
+  Figuras.add(Dani);
+  Figuras.add(Yadi);
+  Figuras.add(Fer);
+  Figuras.add(Kaled);
+  Figuras.add(Ian);
+  Figuras.add(Irais);
+}
+
+void draw(){
+  println(Ate.perimetro());
+  println(Mariana.perimetro());
+  println(Dani.perimetro());
+  println(Yadi.perimetro());
+  println(Fer.perimetro());
+  println(Kaled.perimetro());
+  println(Ian.perimetro());
+  println(Irais.perimetro());
+ 
+}
+
+
+interface Figura{
+  float perimetro();
+  float area ();
+  
+}
+
+class Triangulo implements Figura{
+  float b,h,l1,l2,l3;
+  int x1=100,y1=150;
+  int x2=100,y2=150;
+  Triangulo(float b_, float h_, float l1_, float l2_, float l3_){
+    b = b_;
+    h = h_;
+    l1 = l1_;
+    l2 = l2_;
+    l3 = l3_;
+    
+  }
+  
+  float perimetro(){
+      beginShape();
+    vertex(x1,y1);
+    vertex(x1+b,y1-l1);
+    vertex(x1+l1,y1);
+    vertex(x1,y1);
+    endShape();
+    return l1 + l2 + l3;
+  }
+  
+  float area(){
+    //ya que es un triangulo equilatero no se divide entre dos//
+    return b*h;
+  }
+  
+}
+
+
+
+class Cuadrado implements Figura{
+  int l;
+  int x=300,y=150;
+  
+  Cuadrado (int l_){
+    l = l_;
+  }
+  float perimetro (){
+   beginShape();
+   vertex(x,y);
+   vertex(x+l,y);
+   vertex(x+l,y-l);
+   vertex(x,y-l);
+   vertex(x,y);
+   endShape();
+  return l*4;
+}
+
+float area (){
+  return l*l;
+ }
+}
+
+class Rectangulo implements Figura{
+  int r1,r2;
+  int x=100,y=200;
+  Rectangulo (int r1_, int r2_){
+  r1 = r1_;
+  r2 = r2_;
+  }
+  float perimetro(){
+     beginShape();
+   vertex(x,y);
+   vertex(x+r1,y);
+   vertex(x+r1,y+r2);
+   vertex(x,y+r2);
+   vertex(x,y);
+   
+   endShape();
+    return r1*2 + r2*2;
+  }
+  
+  float area(){
+    return r1*r2;
+  }
+}// cierre de clase Rectangulo
+
+class Circulo implements Figura{
+  float PI;
+  int c2;
+  int x=350,y=230;
+  Circulo (float PI_, int c2_){
+  PI = PI_;
+  c2 = c2_;
+  }
+  float perimetro(){
+    ellipse(x,y,c2,c2);
+    return 2*PI*(c2);
+  }
+  
+  float area(){
+    return  PI*(c2^2);
+  }
+}// cierre de clase Circulo
+
+
+class Pentagono implements Figura{
+  int p1,p2;
+  int x=120,y=430;
+  Pentagono (int p1_, int p2_){
+  p1 = p1_;
+  p2 = p2_;
+  }
+  float perimetro(){
+    beginShape();
+    vertex(x,y);
+    vertex(x+p1,y);
+    vertex(x+p1+15.45,y-47.55);
+    vertex(x+25,y-76.93);
+    vertex(x-15.45,y-47.55);
+    vertex(x,y);
+    endShape();
+    return p1*5;
+  }
+  
+  float area(){
+    return p1*5 * (p2);
+  }
+}// cierre de clase Pentagono
+
+class Hexagono implements Figura{
+  int h1,h2;
+  int x=330,y=430;
+ Hexagono (int h1_, int h2_){
+ h1 = h1_;
+  h2 = h2_;
+  }
+  float perimetro(){
+     beginShape();
+    vertex(x,y);
+    vertex(x+h1,y);
+    vertex(x+25+h1,y-43.3);
+    vertex(x+h1,y-86.6);
+    vertex(x,y-86.6);
+    vertex(x-25,y-43.3);
+    vertex(x,y);
+    endShape();
+    return h1*6;
+  }
+  
+  float area(){
+    return h1*6 * (h2);
+  }
+}// cierre de clase Hexagono
+
+class Heptagono implements Figura{
+  int e1,e2;
+  int x=100,y=580;
+ Heptagono (int e1_, int e2_){
+ e1 = e1_;
+  e2 = e2_;
+  }
+  float perimetro(){
+    beginShape();
+   vertex(x,y);
+   vertex(x+e1,y);
+   vertex(x+e1+31.18,y-39.08);
+   vertex(x+e1+20.07,y-87.82);
+   vertex(x+25,y-112.82);
+   vertex(x-20.07,y-87.82);
+    vertex(x-31.08,y-39.08);
+    vertex(x,y);
+    endShape();
+    return e1*7;
+  }
+  
+  float area(){
+
+    return e1*7 * (e2);
+  }
+}// cierre de clase Heptagono
+
+class Octagono implements Figura{
+  int o1,o2;
+  int x=340,y=580;
+ Octagono (int o1_, int o2_){
+ o1 = o1_;
+  o2 = o2_;
+  }
+  float perimetro(){
+     beginShape();
+   vertex(x,y);
+  vertex(x+o1,y);
+  vertex(x+o1+35.35,y-35.35);
+  vertex(x+o1+35.35,y-o2-70.7);
+  vertex(x+o1,y-106.5-o2);
+  vertex(x,y-o2-106.5);
+  vertex(x-35.35,y-o2-70.7);
+  vertex(x-35.35,y-35.35);
+  vertex(x,y);
+  
+    endShape();
+    return o1*8;
+  }
+  
+  float area(){
+    return o1*8 * (o2);
+  }
+}// cierre de clase Octagono
